@@ -1,5 +1,6 @@
 import math
 
+
 class Node:  # init node class
     def __init__(self, dataval):
         self.value = dataval
@@ -77,7 +78,8 @@ class BST:  # Binary Search Tree class
             self.first_order_traversal(current_node.left)
             self.first_order_traversal(current_node.right)
 
-    def MaxNode(self): # traverse the node from root to right recursively until the right is NULL.
+    # traverse the node from root to right recursively until the right is NULL.
+    def MaxNode(self):
         if self.root is None:
             print("Root isn't available")
         else:
@@ -86,7 +88,8 @@ class BST:  # Binary Search Tree class
                 pointer = pointer.right
             return pointer.getVal()
 
-    def MinNode(self): # traverse the node from root to left recursively until the left is NULL.
+    # traverse the node from root to left recursively until the left is NULL.
+    def MinNode(self):
         if self.root is None:
             print("Root isn't available")
         else:
@@ -100,10 +103,10 @@ class BST:  # Binary Search Tree class
             print("Root isn't available")
         else:
             pointer = self.root
-            boolean = self.finding_node(pointer, value = value)
+            boolean = self.finding_node(pointer, value=value)
             return boolean
 
-    def finding_node(self, pointer, value): # binary search
+    def finding_node(self, pointer, value):  # binary search
         if not pointer:
             return False
         if pointer.getVal() == value:
@@ -111,7 +114,7 @@ class BST:  # Binary Search Tree class
         if pointer.getVal() > value:
             return self.finding_node(pointer.left, value)
         return self.finding_node(pointer.right, value)
-    
+
     def Height(self):
         if self.root is None:
             return 0
@@ -119,17 +122,22 @@ class BST:  # Binary Search Tree class
             pointer = self.root
             height = self.Depth(pointer)
             return height
-    
-    def Depth(self, node):
-        if node is None: return 0
+
+    def Depth(self, node):  # calculate BST height
+        if node is None:
+            return 0
         leftDepth = self.Depth(node.left)
         rigthDepth = self.Depth(node.right)
         return max(leftDepth, rigthDepth) + 1
-    
+
     def TreeVal(self):
         if self.root is None:
             return 0
         return self.root.getVal() + self.TreeVal(self.root.left) + self.TreeVal(self.root.right)
 
     def Sum_All_Nodes_on_K_level(self, k):
-        pass
+        if self.root is None:
+            return 0
+        if k == 0:
+            return self.root.getVal()
+        return self.Sum_All_Nodes_on_K_level(self.root.left, k-1) + self. Sum_All_Nodes_on_K_level(self.root.right, k-1)
