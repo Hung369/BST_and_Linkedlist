@@ -9,12 +9,13 @@ def SinglyLinkedList():
         head.AtEnd(value)
 
     head.listprint()
-    head = head.insert(5, 10)
+    head.insert(position=2, value=10)
+    print("\n-------------------\n")
     print("List after insert new value")
     head.listprint()
-    num = 3
-    head = head.delete_all_values(num)
-    print(f"List after delete all {num} values")
+    num = 7
+    head.delete_all_values(num)
+    print(f"\nList after delete all {num} values")
     head.listprint()
     return head
 
