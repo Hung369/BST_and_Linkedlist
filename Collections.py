@@ -51,8 +51,24 @@ class LinkedList:  # singly linked list class
             NewNode.next = pointer
         return self.head
 
-    def delete(self, index):
-        pass
+    def delete_all_values(self, values):
+        if self.head is None:
+            print('Deletion Error: The list is empty.')
+            return
+        while self.head.data == values:
+            self.head = self.head.next
+        previous = None
+        current = self.head
+        while current:
+            if current.getVal() == values:
+                previous.next = current.next
+                temp = current
+                previous = previous.next
+                current = previous.next
+                del temp
+            else:
+                previous = current
+                current = current.next
 
 
 class TreeNode(Node):  # Binary Tree node
