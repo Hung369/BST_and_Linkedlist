@@ -72,7 +72,7 @@ class BST:  # Binary Search Tree class
         if self.root is not None:
             self.__first_order_traversal(self.root)
 
-    def __first_order_traversal(self, current_node):
+    def __first_order_traversal(self, current_node):  # private method
         if current_node is not None:
             print(current_node.getVal())
             self.first_order_traversal(current_node.left)
