@@ -1,7 +1,7 @@
 from Collections import *
 
 
-def LinkedList():
+def SinglyLinkedList():
     head = LinkedList()
     num = int(input('Enter numbers of nodes: '))
     for i in range(num):
@@ -41,4 +41,4 @@ def BinaryTree():
 
 
 if __name__ == "__main__":
-    head = LinkedList()
+    head = SinglyLinkedList()
