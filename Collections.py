@@ -35,6 +35,28 @@ class LinkedList:  # singly linked list class
             print(printval.getVal())
             printval = printval.next
 
+    def insert(self, position, value):
+        NewNode = ListNode(value)
+        if self.head is None and position == 0:
+            self.head = NewNode
+        elif position == 0:
+            NewNode.next = self.head
+            self.head = NewNode
+        else:
+            pointer = self.head
+            prev = None
+            k = 0
+            while (pointer.next and k < position - 1):
+                prev = pointer
+                pointer = pointer.next
+                k += 1
+            prev.next = NewNode
+            NewNode.next = pointer
+        return self.head
+
+    def delete(self, index):
+        pass
+
 
 class TreeNode(Node):  # Binary Tree node
     def __init__(self, dataval):
