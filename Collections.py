@@ -130,14 +130,21 @@ class BST:  # Binary Search Tree class
         rigthDepth = self.Depth(node.right)
         return max(leftDepth, rigthDepth) + 1
 
-    def TreeVal(self):
+    def TreeVal(self):  # sum all nodes on the tree
         if self.root is None:
             return 0
         return self.root.getVal() + self.TreeVal(self.root.left) + self.TreeVal(self.root.right)
 
-    def Sum_All_Nodes_on_K_level(self, k):
+    def Sum_All_Nodes_on_K_level(self, k):  # sum all the nodes at k level
         if self.root is None:
             return 0
         if k == 0:
             return self.root.getVal()
         return self.Sum_All_Nodes_on_K_level(self.root.left, k-1) + self. Sum_All_Nodes_on_K_level(self.root.right, k-1)
+
+    def Sum_All_Leaf_Nodes(self):
+        if self.root is None:
+            return 0
+        if self.root.left is None and self.root.right is None:
+            return self.root.getVal()
+        return self.Sum_All_Leaf_Nodes(self.root.left) + self.Sum_All_Leaf_Nodes(self.root.right)

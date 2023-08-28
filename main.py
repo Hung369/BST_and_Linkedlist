@@ -32,3 +32,5 @@ if __name__ == "__main__":
     print(f"The maximum value in BST is {root.MaxNode()}")
     print(f"The minimum value in BST is {root.MinNode()}")
     print(f"BST height is {root.Height()}")
+    print(f"BST total values {root.TreeVal(root)}")
+    print(f"BST sum all leaf nodes {root.Sum_All_Leaf_Nodes()}")
