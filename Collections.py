@@ -70,9 +70,9 @@ class BST:  # Binary Search Tree class
 
     def FirstOrder(self):
         if self.root is not None:
-            self.first_order_traversal(self.root)
+            self.__first_order_traversal(self.root)
 
-    def first_order_traversal(self, current_node):
+    def __first_order_traversal(self, current_node):
         if current_node is not None:
             print(current_node.getVal())
             self.first_order_traversal(current_node.left)
@@ -120,31 +120,40 @@ class BST:  # Binary Search Tree class
             return 0
         else:
             pointer = self.root
-            height = self.Depth(pointer)
+            height = self.__depth(pointer)
             return height
 
-    def Depth(self, node):  # calculate BST height
+    def __depth(self, node):  # calculate BST height
         if node is None:
             return 0
-        leftDepth = self.Depth(node.left)
-        rigthDepth = self.Depth(node.right)
+        leftDepth = self.__depth(node.left)
+        rigthDepth = self.__depth(node.right)
         return max(leftDepth, rigthDepth) + 1
 
     def TreeVal(self):  # sum all nodes on the tree
-        if self.root is None:
+        return self.__sum_all_val(self.root)
+
+    def __sum_all_val(self, current):
+        if current is None:
             return 0
-        return self.root.getVal() + self.TreeVal(self.root.left) + self.TreeVal(self.root.right)
+        return current.getVal() + self.__sum_all_val(current.left) + self.__sum_all_val(current.right)
 
     def Sum_All_Nodes_on_K_level(self, k):  # sum all the nodes at k level
-        if self.root is None:
+        return self.__sum_on_k(self.root, k)
+
+    def __sum_on_k(self, current, k):
+        if current is None:
             return 0
         if k == 0:
-            return self.root.getVal()
-        return self.Sum_All_Nodes_on_K_level(self.root.left, k-1) + self. Sum_All_Nodes_on_K_level(self.root.right, k-1)
+            return current.getVal()
+        return self.__sum_on_k(current.left, k-1) + self. __sum_on_k(current.right, k-1)
 
-    def Sum_All_Leaf_Nodes(self):
-        if self.root is None:
+    def Sum_All_Leaf_Nodes(self):  # sum all leaf nodes
+        return self.__sum_leaf(self.root)
+
+    def __sum_leaf(self, current):
+        if current is None:
             return 0
-        if self.root.left is None and self.root.right is None:
-            return self.root.getVal()
-        return self.Sum_All_Leaf_Nodes(self.root.left) + self.Sum_All_Leaf_Nodes(self.root.right)
+        if current.left is None and current.right is None:
+            return current.getVal()
+        return self.__sum_leaf(current.left) + self.__sum_leaf(current.right)
