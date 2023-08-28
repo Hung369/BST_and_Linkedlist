@@ -1,6 +1,3 @@
-import math
-
-
 class Node:  # init node class
     def __init__(self, dataval):
         self.value = dataval
