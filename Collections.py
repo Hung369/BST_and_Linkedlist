@@ -29,7 +29,7 @@ class LinkedList:  # singly linked list class
     def listprint(self):
         printval = self.head
         while printval is not None:
-            print(printval.getVal())
+            print(printval.getVal(), end=" ")
             printval = printval.next
 
     def insert(self, position, value):
@@ -69,6 +69,7 @@ class LinkedList:  # singly linked list class
             else:
                 previous = current
                 current = current.next
+        return self.head
 
 
 class TreeNode(Node):  # Binary Tree node
