@@ -60,6 +60,8 @@ def Undirected():
     print(f"Number of vertices in graph is {graph.num_Of_Vertex()}")
     print("Graph in adjacency-list \n")
     print(graph.show_graph())
+    print("\n-----------------------------\n")
+    graph.DFS_Path(0)
 
 
 if __name__ == "__main__":

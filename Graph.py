@@ -19,3 +19,21 @@ class Undirected_Graph:
 
     def show_graph(self):
         return self.__adj
+
+    def DFS_Path(self, v):
+        visited = set()
+        self.__dfs(visited, v)
+
+    def __dfs(self, visited, v):
+        visited.add(v)
+        print(v, end=' ')
+
+        for neighbour in self.__adj[v]:
+            if neighbour not in visited:
+                self.__dfs(visited, neighbour)
+
+    def degree(self, v):
+        degree = 0
+        for i in self.__adj[v]:
+            degree += 1
+        return degree
