@@ -61,7 +61,12 @@ def Undirected():
     print("Graph in adjacency-list \n")
     print(graph.show_graph())
     print("\n-----------------------------\n")
+    print("DFS Traversal")
     graph.DFS_Path(0)
+    cc = graph.connected_components()
+    print("\n-----------------------------\n")
+    print("All connected components in the graph \n")
+    print(cc)
 
 
 if __name__ == "__main__":

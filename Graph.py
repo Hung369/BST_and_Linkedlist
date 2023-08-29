@@ -45,3 +45,20 @@ class Undirected_Graph:
             if tmp > maxim:
                 maxim = tmp
         return maxim
+
+    def connected_components(self):
+        visited = set()
+        cc = []
+        for v in range(self.__V):
+            if v not in visited:
+                temp = []
+                cc.append(self.__traversal(temp, visited, v))
+        return cc
+
+    def __traversal(self, temp, visited, v):
+        visited.add(v)
+        temp.append(v)
+        for neighbour in self.__adj[v]:
+            if neighbour not in visited:
+                temp = self.__traversal(temp, visited, neighbour)
+        return temp
