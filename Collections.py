@@ -61,8 +61,7 @@ class LinkedList:  # singly linked list class
         while current:
             if current.getVal() == values:
                 previous.next = current.next
-                current = current.next.next
-                previous = previous.next
+                current = current.next
             else:
                 previous = current
                 current = current.next
