@@ -15,7 +15,7 @@ def SinglyLinkedList():
     head.listprint()
     num = 7
     head.delete_all_values(num)
-    print(f"\nList after delete all {num} values")
+    print(f"\nList after delete all {num} values\n")
     head.listprint()
     return head
 
