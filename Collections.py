@@ -60,8 +60,10 @@ class LinkedList:  # singly linked list class
         current = self.head
         while current:
             if current.getVal() == values:
+                tmp = current
                 previous.next = current.next
                 current = current.next
+                del tmp
             else:
                 previous = current
                 current = current.next
