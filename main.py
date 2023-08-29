@@ -1,4 +1,5 @@
 from Collections import *
+from Graph import *
 
 
 def SinglyLinkedList():
@@ -41,5 +42,25 @@ def BinaryTree():
     return root
 
 
+def Undirected():
+    graph = Undirected_Graph(13)
+    graph.addEdge(0, 1)
+    graph.addEdge(0, 2)
+    graph.addEdge(0, 6)
+    graph.addEdge(0, 5)
+    graph.addEdge(5, 3)
+    graph.addEdge(5, 4)
+    graph.addEdge(3, 4)
+    graph.addEdge(4, 6)
+    graph.addEdge(7, 8)
+    graph.addEdge(9, 10)
+    graph.addEdge(9, 11)
+    graph.addEdge(9, 12)
+    graph.addEdge(11, 12)
+    print(f"Number of vertices in graph is {graph.num_Of_Vertex()}")
+    print("Graph in adjacency-list \n")
+    print(graph.show_graph())
+
+
 if __name__ == "__main__":
-    head = SinglyLinkedList()
+    Undirected()
