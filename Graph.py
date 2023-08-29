@@ -37,3 +37,11 @@ class Undirected_Graph:
         for i in self.__adj[v]:
             degree += 1
         return degree
+
+    def maximum_degree(self):
+        maxim = 0
+        for v in range(self.__V):
+            tmp = self.degree(self.__adj[v])
+            if tmp > maxim:
+                maxim = tmp
+        return maxim
