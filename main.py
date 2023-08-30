@@ -67,6 +67,8 @@ def Undirected():
     print("\n-----------------------------\n")
     print("All connected components in the graph \n")
     print(cc)
+    if (graph.isCyclicConnected(0)):
+        print("\nThe graph has cyclic path.")
 
 
 if __name__ == "__main__":

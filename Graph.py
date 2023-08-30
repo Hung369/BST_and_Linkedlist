@@ -68,7 +68,7 @@ class Undirected_Graph:
 
     def isCyclicConnected(self, started):
         parent = [-1] * self.__V
-        visited = [False]*self.__V
+        visited = [False] * self.__V
 
         # Create a queue for BFS
         q = deque()
@@ -78,7 +78,7 @@ class Undirected_Graph:
         visited[started] = True
         q.append(started)
 
-        while not q.empty():
+        while len(q) != 0:
 
             # Dequeue a vertex from queue and check all adjacent nodes
             u = q.pop()
