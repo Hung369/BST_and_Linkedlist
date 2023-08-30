@@ -78,7 +78,7 @@ class Undirected_Graph:
         visited[started] = True
         q.append(started)
 
-        while len(q) != 0:
+        while len(q) != 0:  # BFS traversal
 
             # Dequeue a vertex from queue and check all adjacent nodes
             u = q.pop()
