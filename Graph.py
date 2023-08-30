@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class Undirected_Graph:
     def __init__(self, number):
         self.__V = number
@@ -62,3 +65,30 @@ class Undirected_Graph:
             if neighbour not in visited:
                 temp = self.__traversal(temp, visited, neighbour)
         return temp
+
+    def isCyclicConnected(self, started):
+        parent = [-1] * self.__V
+        visited = [False]*self.__V
+
+        # Create a queue for BFS
+        q = deque()
+
+        # Mark the current node as
+        # visited and enqueue it
+        visited[started] = True
+        q.append(started)
+
+        while not q.empty():
+
+            # Dequeue a vertex from queue and check all adjacent nodes
+            u = q.pop()
+
+            for v in self.__adj[u]:
+                if not visited[v]:
+                    visited[v] = True
+                    q.append(v)
+                    parent[v] = u
+                elif parent[u] != v:
+                    return True
+
+        return False
