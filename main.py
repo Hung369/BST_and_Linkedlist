@@ -1,4 +1,4 @@
-from Collections import *
+from NodesLib import *
 from Graph import *
 
 
