@@ -71,5 +71,28 @@ def Undirected():
         print("\nThe graph has cyclic path.")
 
 
+def DirectGraph():
+    digraph = Directed_Graph(7)
+    digraph.addEdge(0, 1)
+    digraph.addEdge(0, 2)
+    digraph.addEdge(0, 3)
+    digraph.addEdge(0, 4)
+    digraph.addEdge(1, 2)
+    digraph.addEdge(1, 3)
+    digraph.addEdge(1, 5)
+    digraph.addEdge(2, 3)
+    digraph.addEdge(3, 4)
+    digraph.addEdge(3, 5)
+    digraph.addEdge(3, 6)
+    digraph.addEdge(4, 6)
+    print(f"Number of vertices in graph is {digraph.num_Of_Vertex()}")
+    print("Graph in adjacency-list \n")
+    print(digraph.show_graph())
+    print("\n-----------------------------\n")
+    print("DFS Traversal")
+    digraph.DFStraverse(0)
+    print("\n-----------------------------\n")
+
+
 if __name__ == "__main__":
-    Undirected()
+    DirectGraph()
