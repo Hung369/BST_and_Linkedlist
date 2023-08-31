@@ -114,3 +114,14 @@ class Directed_Graph:
 
     def show_graph(self):
         return self.__adj
+
+    def DFStraverse(self, v):
+        visited = [False] * self.num_Of_Vertex()
+        self.__dfs(visited, v)
+
+    def __dfs(self, visited, start):
+        visited[start] = True
+        print(start, end=" ")
+        for vertex in self.__adj[start]:
+            if not visited[vertex]:
+                self.__dfs(visited, vertex)
