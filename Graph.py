@@ -140,3 +140,8 @@ class Directed_Graph:
             if not visited[v]:
                 self.__traversal(v, visited, stack)
         stack.append(vertex)
+
+    def strong_connected(self, v, w):
+        if w in self.__adj[v] and v in self.__adj[w]:
+            return True
+        return False
