@@ -125,3 +125,18 @@ class Directed_Graph:
         for vertex in self.__adj[start]:
             if not visited[vertex]:
                 self.__dfs(visited, vertex)
+
+    def TopoSort(self):
+        visited = [False] * self.num_Of_Vertex()
+        stack = list()
+        for vertex in range(self.num_Of_Vertex()):
+            if not visited[vertex]:
+                self.__traversal(vertex, visited, stack)
+        return stack[::-1]
+
+    def __traversal(self, vertex, visited, stack):
+        visited[vertex] = True
+        for v in self.__adj[vertex]:
+            if not visited[v]:
+                self.__traversal(v, visited, stack)
+        stack.append(vertex)

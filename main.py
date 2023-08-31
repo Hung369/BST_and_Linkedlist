@@ -92,6 +92,10 @@ def DirectGraph():
     print("DFS Traversal")
     digraph.DFStraverse(0)
     print("\n-----------------------------\n")
+    arr = digraph.TopoSort()
+    print("Digraph Topological Sort")
+    print(arr)
+    print("\n-----------------------------\n")
 
 
 if __name__ == "__main__":
