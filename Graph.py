@@ -145,3 +145,56 @@ class Directed_Graph:
         if w in self.__adj[v] and v in self.__adj[w]:
             return True
         return False
+
+
+class EdgeWeight:
+    def __init__(self, vertex, end, value):
+        self.v = vertex
+        self.w = end
+        self.weight = value
+
+    def either(self):
+        return self.v
+
+    def other(self, vertex):
+        if vertex == self.v:
+            return self.w
+        return self.v
+
+    def compareTo(self, that):
+        if self.weight < that.weight:
+            return -1
+        elif self.weight > that.weight:
+            return 1
+        return 0
+
+    def __str__(self):
+        string = f"start:{self.v}, end:{self.w}, weight:{self.weight}"
+        return string
+
+
+class WeightedGraph:
+    def __init__(self, v):
+        self.__V = v
+        self.__adj = {}
+        for i in range(self.__V):
+            self.__adj[i] = set()
+
+    def addEdge(self, edge):
+        v = edge.either()
+        w = edge.other(v)
+        self.__adj[v].add(edge)
+        self.__adj[w].add(edge)
+
+    def adjacent(self, v):
+        for e in self.__adj:
+            print(e)
+
+    def num_Of_Vertex(self):
+        return self.__V
+
+    def show_graph(self):
+        for i in range(self.__V):
+            print(f"Vertex {i}:")
+            for e in self.__adj[i]:
+                print(e)

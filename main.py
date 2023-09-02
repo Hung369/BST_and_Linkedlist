@@ -98,5 +98,24 @@ def DirectGraph():
     print("\n-----------------------------\n")
 
 
+def WGraph():
+    myfile = open('weightgraph.txt', 'r')
+    text = myfile.read()
+    myfile.close()
+    comps = text.split('\n')
+    vertex, edges = comps[0], comps[1]
+
+    wgraph = WeightedGraph(int(vertex))
+
+    comps.pop(0)
+    comps.pop(0)
+    for i in range(int(edges)):
+        start, end, weight = comps[i].split()
+        e = EdgeWeight(int(start), int(end), float(weight))
+        wgraph.addEdge(e)
+
+    wgraph.show_graph()
+
+
 if __name__ == "__main__":
-    DirectGraph()
+    WGraph()
