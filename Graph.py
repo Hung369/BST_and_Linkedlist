@@ -203,3 +203,43 @@ class WeightedGraph:
             print(f"Vertex {i}:")
             for e in self.__adj[i]:
                 print(e)
+
+    def find(self, parent, i):  # detect acyclic path functions
+        if parent[i] == i:
+            return i
+        return self.find(parent, parent[i])
+
+    # performs the union of two subsets x and y using the union by rank method.
+    def apply_union(self, parent, rank, x, y):
+        xroot = self.find(parent, x)
+        yroot = self.find(parent, y)
+        if rank[xroot] < rank[yroot]:
+            parent[xroot] = yroot
+        elif rank[xroot] > rank[yroot]:
+            parent[yroot] = xroot
+        else:
+            parent[yroot] = xroot
+            rank[xroot] += 1
+
+    def kruskal_MST(self):
+        result = []
+        i, e = 0, 0
+        # sorts all wetghts in ascending order
+        self.__edg = sorted(self.__edg, key=lambda item: item[2])
+        parent = []
+        rank = [0]*self.__V  # union find
+
+        for node in range(self.__V):  # initialize the connected path
+            parent.append(node)
+
+        while e < self.__V - 1:
+            u, v, w = self.__edg[i]
+            i += 1
+            x = self.find(parent, u)
+            y = self.find(parent, v)
+            if x != y:  # do not have an acyclic path then add into the tree
+                e += 1
+                result.append([u, v, w])
+                self.apply_union(parent, rank, x, y)
+        for u, v, weight in result:
+            print(f"{u} - {v}: {weight}")

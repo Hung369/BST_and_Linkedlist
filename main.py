@@ -115,6 +115,9 @@ def WGraph():
         wgraph.addEdge(e)
 
     wgraph.show_graph()
+    print("\n-----------------------------\n")
+    print("Minimum Spanning Tree\n")
+    wgraph.kruskal_MST()
 
 
 if __name__ == "__main__":
