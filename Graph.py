@@ -168,6 +168,9 @@ class EdgeWeight:
             return 1
         return 0
 
+    def getInfo(self):
+        return [self.v, self.w, self.weight]
+
     def __str__(self):
         string = f"start:{self.v}, end:{self.w}, weight:{self.weight}"
         return string
@@ -177,6 +180,7 @@ class WeightedGraph:
     def __init__(self, v):
         self.__V = v
         self.__adj = {}
+        self.__edg = []
         for i in range(self.__V):
             self.__adj[i] = set()
 
@@ -185,6 +189,7 @@ class WeightedGraph:
         w = edge.other(v)
         self.__adj[v].add(edge)
         self.__adj[w].add(edge)
+        self.__edg.append(edge.getInfo())
 
     def adjacent(self, v):
         for e in self.__adj:
