@@ -1,4 +1,5 @@
 from collections import deque
+from queue import PriorityQueue
 
 
 class Undirected_Graph:
@@ -243,3 +244,47 @@ class WeightedGraph:
                 self.apply_union(parent, rank, x, y)
         for u, v, weight in result:
             print(f"{u} - {v}: {weight}")
+
+    def prim_MST(self):
+        result = []
+        visited = [False]*self.__V
+        pq = EdgePriorityQueue()
+        self.__visit(0, visited, pq)
+        while not pq.isEmpty():
+            edge = pq.remove()
+            v = edge.either()
+            w = edge.other(v)
+            if visited[v] and visited[w]:
+                continue
+            result.append(edge.getInfo())
+            if not visited[v]:
+                self.__visit(v, visited, pq)
+            if not visited[w]:
+                self.__visit(w, visited, pq)
+        for u, v, weight in result:
+            print(f"{u} - {v}: {weight}")
+
+    def __visit(self, vertex, visited, pq):
+        visited[vertex] = True
+        for e in self.__adj[vertex]:
+            if not visited[e.other(vertex)]:
+                pq.insert(e)
+
+
+class EdgePriorityQueue:
+    def __init__(self):
+        self.queue = PriorityQueue()
+
+    def insert(self, edge):
+        # Use the edge's age as the priority
+        self.queue.put((edge.weight, edge))
+
+    def remove(self):
+        if not self.queue.empty():
+            # Return the edge object, not the priority
+            return self.queue.get()[1]
+        else:
+            return None
+
+    def isEmpty(self):
+        return self.queue.empty()

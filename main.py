@@ -116,8 +116,11 @@ def WGraph():
 
     wgraph.show_graph()
     print("\n-----------------------------\n")
-    print("Minimum Spanning Tree\n")
+    print("Kruskal MST\n")
     wgraph.kruskal_MST()
+    print("\n-----------------------------\n")
+    print("Prim MST\n")
+    wgraph.prim_MST()
 
 
 if __name__ == "__main__":
