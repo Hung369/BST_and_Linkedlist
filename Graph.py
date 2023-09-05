@@ -1,6 +1,6 @@
 from collections import deque
 import math
-from EdgePrioQueue import EdgePQ
+from EdgePrioQueue import EdgePQ, IndexedMinPQ
 
 
 class Undirected_Graph:
@@ -194,7 +194,7 @@ class WeightedGraph:
         self.__edg.append(edge.getInfo())
 
     def adjacent(self, v):
-        for e in self.__adj:
+        for e in self.__adj[v]:
             print(e)
 
     def num_Of_Vertex(self):
@@ -321,7 +321,7 @@ class WeightedDigraph:
     def num_Of_Vertex(self):
         return self.__V
 
-    def adj(self, v):
+    def adjacent(self, v):
         for e in self.__adj[v]:
             print(e)
 
@@ -336,7 +336,24 @@ class DijkstraSP:
     def __init__(self, graph, start):
         self.edgeTo = [None]*graph.num_Of_Vertex()
         self.distTo = [math.inf]*graph.num_Of_Vertex()
-        self.pq = None
+        self.pq = IndexedMinPQ(graph.num_Of_Vertex())
+        self.departure = start
 
+    def ShortestPath(self):
+        self.distTo[self.departure] = 0.0
+        self.pq.insert(self.departure, 0.0)
+        while not self.pq.isEmpty():
+            v = self.pq.deleteMin()
+            for e in self.graph.adjacent(v):
+                self.relax(e)
 
-# class
+    def relax(self, e):
+        v = e.getFrom()
+        w = e.getTo()
+        if self.distTo[w] > self.distTo[v] + e.getWeight():
+            self.distTo[w] = self.distTo[v] + e.getWeight()
+            self.edgeTo[w] = e
+            if self.pq.contains(w):
+                self.pq.decreaseKey(w, self.distTo[w])
+            else:
+                self.pq.insert(w, self.distTo[w])
