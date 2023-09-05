@@ -1,5 +1,6 @@
 from collections import deque
-from queue import PriorityQueue
+import math
+from EdgePrioQueue import EdgePQ
 
 
 class Undirected_Graph:
@@ -271,12 +272,11 @@ class WeightedGraph:
                 pq.insert(e)
 
 
-class EdgePriorityQueue:
+class EdgePriorityQueue(EdgePQ):
     def __init__(self):
-        self.queue = PriorityQueue()
+        super().__init__()
 
     def insert(self, edge):
-        # Use the edge's age as the priority
         self.queue.put((edge.weight, edge))
 
     def remove(self):
@@ -286,5 +286,57 @@ class EdgePriorityQueue:
         else:
             return None
 
-    def isEmpty(self):
-        return self.queue.empty()
+
+class DirectedEdge:
+    def __init__(self, start, end, weight):
+        self.__v = start
+        self.__w = end
+        self.__weight = weight
+
+    def getFrom(self):
+        return self.__v
+
+    def getTo(self):
+        return self.__w
+
+    def getWeight(self):
+        return self.__weight
+
+    def __str__(self):
+        string = f"{self.v} --> {self.w}, weight:{self.weight}"
+        return string
+
+
+class WeightedDigraph:
+    def __init__(self, number):
+        self.__V = number
+        self.__adj = {}
+        for vertex in range(self.__V):
+            self.__adj[vertex] = set()
+
+    def addEdge(self, edge):
+        v = edge.getFrom()
+        self.__adj[v].add(edge)
+
+    def num_Of_Vertex(self):
+        return self.__V
+
+    def adj(self, v):
+        for e in self.__adj[v]:
+            print(e)
+
+    def show_graph(self):
+        for i in range(self.__V):
+            print(f"Vertex {i}:")
+            for e in self.__adj[i]:
+                print(e)
+
+
+class DijkstraSP:
+    def __init__(self, graph, start):
+        self.edgeTo = [None]*graph.num_Of_Vertex()
+        self.distTo = [math.inf]*graph.num_Of_Vertex()
+        self.pq = None
+
+
+# class
