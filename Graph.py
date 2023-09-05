@@ -1,6 +1,6 @@
 from collections import deque
-import math
-from EdgePrioQueue import EdgePQ, IndexMinPQ
+from EdgePrioQueue import EdgePQ
+from collections import defaultdict
 
 
 class Undirected_Graph:
@@ -302,8 +302,11 @@ class DirectedEdge:
     def getWeight(self):
         return self.__weight
 
+    def getInfo(self):
+        return self.__v, self.__w, self.__weight
+
     def __str__(self):
-        string = f"{self.v} --> {self.w}, weight:{self.weight}"
+        string = f"{self.__v} --> {self.__w}, weight:{self.__weight}"
         return string
 
 
@@ -325,6 +328,9 @@ class WeightedDigraph:
         for e in self.__adj[v]:
             print(e)
 
+    def adj(self, v):
+        return self.__adj[v]
+
     def show_graph(self):
         for i in range(self.__V):
             print(f"Vertex {i}:")
@@ -332,32 +338,21 @@ class WeightedDigraph:
                 print(e)
 
 
-class DijkstraSP:
-    def __init__(self, graph, start):
-        self.edgeTo = [None]*graph.num_Of_Vertex()
-        self.distTo = [math.inf]*graph.num_Of_Vertex()
-        self.pq = IndexMinPQ(graph.num_Of_Vertex())
-        self.departure = start
+class SP():
+    def __init__(self):
+        """
+        self.edges is a dict of all possible next nodes
+        e.g. {'X': ['A', 'B', 'C', 'E'], ...}
+        self.weights has all the weights between two nodes,
+        with the two nodes as a tuple as the key
+        e.g. {('X', 'A'): 7, ('X', 'B'): 2, ...}
+        """
+        self.edges = defaultdict(list)
+        self.weights = {}
 
-    def ShortestPath(self):
-        self.distTo[self.departure] = 0.0
-        self.pq.insert(self.departure, 0.0)
-        while not self.pq.isEmpty():
-            v = self.pq.deleteMin()
-            for e in self.graph.adjacent(v):
-                self.relax(e)
-
-    def relax(self, e):
-        v = e.getFrom()
-        w = e.getTo()
-        if self.distTo[w] > self.distTo[v] + e.getWeight():
-            self.distTo[w] = self.distTo[v] + e.getWeight()
-            self.edgeTo[w] = e
-            if self.pq.contains(w):
-                self.pq.decreaseKey(w, self.distTo[w])
-            else:
-                self.pq.insert(w, self.distTo[w])
-
-    def getShortest(self):
-        for i in range(len(self.edgeTo)):
-            print(f"{i} --> {self.edgeTo[i]}: {self.distTo[i]}")
+    def add_edge(self, from_node, to_node, weight):
+        # Note: assumes edges are bi-directional
+        self.edges[from_node].append(to_node)
+        self.edges[to_node].append(from_node)
+        self.weights[(from_node, to_node)] = weight
+        self.weights[(to_node, from_node)] = weight
