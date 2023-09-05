@@ -1,6 +1,6 @@
 from collections import deque
 import math
-from EdgePrioQueue import EdgePQ, IndexedMinPQ
+from EdgePrioQueue import EdgePQ, IndexMinPQ
 
 
 class Undirected_Graph:
@@ -336,7 +336,7 @@ class DijkstraSP:
     def __init__(self, graph, start):
         self.edgeTo = [None]*graph.num_Of_Vertex()
         self.distTo = [math.inf]*graph.num_Of_Vertex()
-        self.pq = IndexedMinPQ(graph.num_Of_Vertex())
+        self.pq = IndexMinPQ(graph.num_Of_Vertex())
         self.departure = start
 
     def ShortestPath(self):
@@ -357,3 +357,7 @@ class DijkstraSP:
                 self.pq.decreaseKey(w, self.distTo[w])
             else:
                 self.pq.insert(w, self.distTo[w])
+
+    def getShortest(self):
+        for i in range(len(self.edgeTo)):
+            print(f"{i} --> {self.edgeTo[i]}: {self.distTo[i]}")

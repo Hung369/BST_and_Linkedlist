@@ -123,5 +123,30 @@ def WGraph():
     wgraph.prim_MST()
 
 
+def Shortest():
+    myfile = open('tiny.txt', 'r')
+    text = myfile.read()
+    myfile.close()
+    comps = text.split('\n')
+    vertex, edges = comps[0], comps[1]
+
+    wdgraph = WeightedDigraph(int(vertex))
+
+    comps.pop(0)
+    comps.pop(0)
+    for i in range(int(edges)):
+        start, end, weight = comps[i].split()
+        e = DirectedEdge(int(start), int(end), float(weight))
+        wdgraph.addEdge(e)
+
+    wdgraph.show_graph()
+    print(wdgraph.num_Of_Vertex())
+
+    print("\n-----------------------------\n")
+    print("Shortest\n")
+    spath = DijkstraSP(wdgraph, 1)
+    spath.getShortest()
+
+
 if __name__ == "__main__":
-    WGraph()
+    Shortest()
