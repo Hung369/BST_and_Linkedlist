@@ -70,3 +70,33 @@ class SortArray:
                     k += 1
             return arr
         return merging(self.element)
+
+    def countingsort(self):
+        size = len(self.element)
+        R = max(self.element) + 1
+        output = [0] * size
+
+        # Initialize count arr
+        count = [0] * R
+
+        # Store the count of each elements in count arr
+        for i in range(0, size):
+            count[self.element[i]] += 1
+
+        # Store the cummulative count
+        for i in range(1, R):
+            count[i] += count[i - 1]
+
+        # Find the index of each element of the original arr in count arr
+        # place the elements in output arr
+        i = size - 1
+        while i >= 0:
+            output[count[self.element[i]] - 1] = self.element[i]
+            count[self.element[i]] -= 1
+            i -= 1
+
+        # Copy the sorted elements into original arr
+        for i in range(0, size):
+            self.element[i] = output[i]
+
+        return self.element

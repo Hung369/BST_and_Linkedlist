@@ -1,5 +1,6 @@
 from NodesLib import *
 from Graph import *
+from Sorting import SortArray
 
 
 def SinglyLinkedList():
@@ -192,5 +193,11 @@ def Shortest():
     print(dijsktra(graph, 'X', 'Y'))
 
 
+def sortarr():
+    arr = [1, 4, 1, 2, 7, 5, 2]
+    sortin = SortArray(arr)
+    print(sortin.countingsort())
+
+
 if __name__ == "__main__":
-    Shortest()
+    sortarr()
