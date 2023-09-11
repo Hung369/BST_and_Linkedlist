@@ -101,13 +101,13 @@ class SortArray:
 
         return self.element
 
-    def radix_sort(lst):
+    def radix_sort(self):
         done = False
         digits = 1
 
         while not done:
             buckets = [[] for _ in range(10)]
-            for number in lst:
+            for number in self.element:
                 remaining_part = number // digits
                 digit = remaining_part % 10
                 buckets[digit].append(number)
