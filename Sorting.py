@@ -116,5 +116,5 @@ class SortArray:
                 else:
                     done = True
             digits *= 10
-            lst = [num for bucket in buckets for num in bucket]
-        return lst
+            self.element = [num for bucket in buckets for num in bucket]
+        return self.element
