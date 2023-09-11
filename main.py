@@ -194,9 +194,9 @@ def Shortest():
 
 
 def sortarr():
-    arr = [1, 4, 1, 2, 7, 5, 2]
+    arr = [170, 45, 75, 90, 802, 24, 2, 66]
     sortin = SortArray(arr)
-    print(sortin.countingsort())
+    print(sortin.mergesort())
 
 
 if __name__ == "__main__":
