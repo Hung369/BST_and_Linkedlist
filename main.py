@@ -207,6 +207,7 @@ def storeWord():
     tentree.insert("up")
     tentree.insert("bug")
     print(tentree.contains("cat"))
+    tentree.traverse()
 
 
 if __name__ == "__main__":
