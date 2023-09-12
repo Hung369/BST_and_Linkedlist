@@ -1,6 +1,7 @@
 from NodesLib import *
 from Graph import *
 from Sorting import SortArray
+from TSearchTree import TernarySearchTree
 
 
 def SinglyLinkedList():
@@ -199,5 +200,14 @@ def sortarr():
     print(sortin.mergesort())
 
 
+def storeWord():
+    tentree = TernarySearchTree()
+    tentree.insert("cat")
+    tentree.insert("cats")
+    tentree.insert("up")
+    tentree.insert("bug")
+    print(tentree.contains("cat"))
+
+
 if __name__ == "__main__":
-    sortarr()
+    storeWord()
