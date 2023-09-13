@@ -1,4 +1,3 @@
-from datetime import *
 class Boyer_Moore:
     def __init__(self, pat):
         self.pattern = pat
