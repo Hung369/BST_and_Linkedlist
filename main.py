@@ -212,9 +212,13 @@ def storeWord():
 
 
 def patternRecognition():
-    txt = "ABAAABCD"
-    bm = Boyer_Moore("AB")
-    position = bm.search(txt)
+    myfile = open('gene.txt', 'r')
+    txt = myfile.read()
+    myfile.close
+
+    # pat = Boyer_Moore("GCC")
+    pat = Rabin_Karp("GCC")
+    position = pat.search(txt)
     if position is not None:
         print("pattern found at index:", *position)
     else:
