@@ -226,4 +226,4 @@ def patternRecognition():
 
 
 if __name__ == "__main__":
-    WGraph()
+    patternRecognition()
