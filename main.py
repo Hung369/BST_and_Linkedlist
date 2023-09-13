@@ -102,7 +102,7 @@ def DirectGraph():
 
 
 def WGraph():
-    myfile = open('weightgraph.txt', 'r')
+    myfile = open('./textfile/weightgraph.txt', 'r')
     text = myfile.read()
     myfile.close()
     comps = text.split('\n')
@@ -212,7 +212,7 @@ def storeWord():
 
 
 def patternRecognition():
-    myfile = open('gene.txt', 'r')
+    myfile = open('./textfile/gene.txt', 'r')
     txt = myfile.read()
     myfile.close
 
@@ -226,4 +226,4 @@ def patternRecognition():
 
 
 if __name__ == "__main__":
-    patternRecognition()
+    WGraph()
