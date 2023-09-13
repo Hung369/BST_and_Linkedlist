@@ -2,6 +2,7 @@ from NodesLib import *
 from Graph import *
 from Sorting import SortArray
 from TSearchTree import TernarySearchTree
+from Pattern import *
 
 
 def SinglyLinkedList():
@@ -210,5 +211,15 @@ def storeWord():
     tentree.traverse()
 
 
+def patternRecognition():
+    txt = "ABAAABCD"
+    bm = Boyer_Moore("AB")
+    position = bm.search(txt)
+    if position is not None:
+        print("pattern found at index:", *position)
+    else:
+        print("not found")
+
+
 if __name__ == "__main__":
-    storeWord()
+    patternRecognition()
