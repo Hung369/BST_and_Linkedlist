@@ -69,7 +69,7 @@ class HuffmanCoding:
             else:
                 current_node = current_node.right
 
-            if current_node.is_leaf() is True:
+            if current_node.is_leaf():
                 decoded_text += current_node.char
                 current_node = self.root
 
