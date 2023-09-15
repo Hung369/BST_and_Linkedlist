@@ -3,7 +3,7 @@ from Graph import *
 from Sorting import SortArray
 from TSearchTree import TernarySearchTree
 from Pattern import *
-
+from DataCompression import HuffmanCoding
 
 def SinglyLinkedList():
     head = LinkedList()
@@ -225,5 +225,21 @@ def patternRecognition():
         print("not found")
 
 
+def compression():
+    text = input("Enter a text line: ")
+    huffcode = HuffmanCoding(text)
+    root = huffcode.buildTree()
+    huffman_code = huffcode.buildHuffManCode()
+
+    print("\n Huffman Coding Table \n", huffman_code)
+
+    encoded_text = ''.join(huffman_code[char] for char in text)
+    print(f"\nOriginal string was:\n{text}")
+    print(f"\nDigitalized string is:\n{encoded_text}")
+
+    encoder = input("Enter a binary encoded text line: ")
+    normal_text = huffcode.decode_huff(encoder)
+    print(f"\nDecoded string from binary string is:\n{normal_text}")
+
 if __name__ == "__main__":
-    patternRecognition()
+    compression()
