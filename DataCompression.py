@@ -1,5 +1,5 @@
 import heapq
-from collections import defaultdict, Counter
+from collections import Counter
 
 class Node:
     def __init__(self, char, freq):
