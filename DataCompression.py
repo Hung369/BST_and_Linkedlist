@@ -74,3 +74,48 @@ class HuffmanCoding:
                 current_node = self.root
 
         return decoded_text
+
+class LZW:    
+    def setting(self):
+        self.dictionary = {chr(i):i for i in range(256)}
+        self.next = 256
+        self.dedict = {i:chr(i) for i in range(256) }
+        
+    
+    def compression(self, data):
+        self.setting()
+        result = []
+        sequence = ""
+
+        for char in data:
+            new_sequence = sequence + char
+            if new_sequence in self.dictionary:
+                sequence = new_sequence
+            else:
+                result.append(self.dictionary[sequence])
+                self.dictionary[new_sequence] = self.next
+                self.next += 1
+                sequence = char
+
+        result.append(self.dictionary[sequence])
+        return result
+    
+    def decompression(self, data):
+        self.setting()
+        result = [chr(data[0])]
+        sequence = result[0]
+
+        for code in data[1:]:
+            if code in self.dedict:
+                entry = self.dedict[code]
+            elif code == next_code:
+                entry = sequence + sequence[0]
+            else:
+                raise ValueError("Invalid compressed data")
+
+            result.append(entry)
+            self.dedict[next_code] = sequence + entry[0]
+            next_code += 1
+            sequence = entry
+
+        return "".join(result)
